@@ -1,0 +1,99 @@
+<div class="container" style="width:500px;">
+    <h3 align="center">Insert product</h3>
+    <br />
+    <form action='/user/admin/addP' method="POST">
+
+        <div class="form-group">
+            <label for="imagepath">ImagePath</label>
+            <input type="text" placeholder="images/dogs/filename.jpg" name="imagepath" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" placeholder="Title" name="title" class="form-control" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" placeholder="Description" name="desc" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" placeholder="Price" name="price" min="1" max="800" class="form-control" required>
+        </div>
+
+
+        <div class="form-group">
+            <!-- Button -->
+            <div class="controls">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+<div class="container" style="width:500px;">
+    <h3 align="center">Delete product</h3>
+    <br />
+    <form action='/user/admin/delP' method="POST">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" placeholder="Title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <!-- Button -->
+            <div class="controls">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" class="btn btn-success">Delete</button>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<div class="container" style="width:500px;">
+    <h3 align="center">Display Orders</h3>
+    <br />
+    <form action='/user/admin/showO' method="POST">
+        <div class="form-group">
+            <!-- Button -->
+            <div class="controls">
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                <button type="submit" class="btn btn-success">Show</button>
+            </div>
+            <br><br>
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <strong>Orders</strong>
+                </div>
+
+
+                <table class="table">
+                    <tr>
+                        <th>Username</th>
+                        <th>Item</th>
+                        <th>Total Price</th>
+                    </tr>
+                {{#each orders}}
+
+                    <tr>
+
+                        <th>{{this.name}}</th>
+                        <th>{{this.items}}</th>
+                        <th>{{this.cart.totalPrice}}$</th>
+                    </tr>
+
+                {{/each}}
+                </table>
+            </div>
+            </div>
+    </form>
+</div>
